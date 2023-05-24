@@ -8,7 +8,7 @@ use App\DTO\Dimensions;
 use App\DTO\RequestParams\SpaceParams;
 use App\Repository\SpaceRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Trait\HasGuidTrait;
+use App\Entity\Trait\GuidTrait;
 use App\Entity\Trait\TimestampableTrait;
 use JsonSerializable;
 use App\Entity\BaseEntityInterface;
@@ -21,7 +21,7 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 #[HasLifecycleCallbacks]
 class Space implements JsonSerializable, BaseEntityInterface
 {
-    use HasGuidTrait;
+    use GuidTrait;
     use TimestampableTrait;
 
     #[ORM\Column(length: 64, unique: true)]

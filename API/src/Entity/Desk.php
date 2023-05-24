@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\DTO\Position as PositionDTO;
 use App\DTO\RequestParams\DeskParams;
 use App\Repository\DeskRepository;
-use App\Entity\Trait\HasGuidTrait;
+use App\Entity\Trait\GuidTrait;
 use App\Entity\Trait\TimestampableTrait;
 use Doctrine\ORM\Mapping as ORM;
 use JsonSerializable;
@@ -15,7 +15,7 @@ use JsonSerializable;
 #[ORM\HasLifecycleCallbacks]
 class Desk implements JsonSerializable, BaseEntityInterface
 {
-    use HasGuidTrait;
+    use GuidTrait;
     use TimestampableTrait;
 
     #[ORM\Column(length: 64, unique:true)]

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Rfc4122\UuidInterface;
 
-trait HasGuidTrait
+trait GuidTrait
 {
     #[ORM\Id]
     #[Orm\GeneratedValue(strategy: 'CUSTOM')]
