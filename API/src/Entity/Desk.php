@@ -58,9 +58,9 @@ class Desk implements JsonSerializable, BaseEntityInterface
         return $this->space;
     }
 
-    public function setRoom(Space $room): self
+    public function setSpace(Space $space): self
     {
-        $this->space = $room;
+        $this->space = $space;
 
         return $this;
     }
