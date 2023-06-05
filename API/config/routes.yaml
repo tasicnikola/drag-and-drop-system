@@ -3,3 +3,57 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+desks:
+  path: /desks
+  controller: App\Controller\DeskController::getAll
+  methods: GET
+desk:
+  path: /desks/{guid}
+  controller: App\Controller\DeskController::get
+  methods: GET
+  requirements:
+    guid: '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+desk_create:
+  path: /desks
+  controller: App\Controller\DeskController::create
+  methods: POST
+desk_update:
+  path: /desks/{guid}
+  controller: App\Controller\DeskController::update
+  methods: PUT
+  requirements:
+    guid: '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+desk_delete:
+  path: /desks/{guid}
+  controller: App\Controller\DeskController::delete
+  methods: DELETE
+  requirements:
+    guid: '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+
+spaces:
+  path: /spaces
+  controller: App\Controller\SpaceController::getAll
+  methods: GET
+space:
+  path: /spaces/{guid}
+  controller: App\Controller\SpaceController::get
+  methods: GET
+  requirements:
+    guid: '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+space_create:
+  path: /spaces
+  controller: App\Controller\SpaceController::create
+  methods: POST
+space_update:
+  path: /spaces/{guid}
+  controller: App\Controller\SpaceController::update
+  methods: PUT
+  requirements:
+    guid: '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
+space_delete:
+  path: /spaces/{guid}
+  controller: App\Controller\SpaceController::delete
+  methods: DELETE
+  requirements:
+    guid: '^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$'
