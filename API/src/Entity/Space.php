@@ -30,7 +30,7 @@ class Space implements JsonSerializable, BaseEntityInterface
     #[ORM\Column(type: 'json')]
     private array $dimensions;
 
-    #[ORM\OneToMany(targetEntity: Desk::class, mappedBy: 'room', cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[ORM\OneToMany(targetEntity: Desk::class, mappedBy: 'space', cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $desks;
 
     public function __construct()
@@ -96,7 +96,7 @@ class Space implements JsonSerializable, BaseEntityInterface
     public function jsonSerialize(): mixed
     {
         return [
-            'guid' => $this->guid,
+            'guid' => $this->getGuid(),
             'name' => $this->name,
             'dimensions' => $this->dimensions,
             'desks' => $this->desks,
