@@ -7,6 +7,7 @@ namespace App\Entity\Trait;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Rfc4122\UuidInterface;
+use Ramsey\Uuid\Lazy\LazyUuidFromString;
 
 trait HasGuidTrait
 {
@@ -16,10 +17,11 @@ trait HasGuidTrait
     #[Orm\CustomIdGenerator(class: UuidGenerator::class)]
     private $guid;
 
-    public function getGuid(): UuidInterface|string
+    public function getGuid(): LazyUuidFromString|UuidInterface|string
     {
         return $this->guid;
     }
+    
 
     public function setGuid(UuidInterface|string $guid): self
     {
