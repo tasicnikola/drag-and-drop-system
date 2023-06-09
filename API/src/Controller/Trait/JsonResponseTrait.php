@@ -29,16 +29,16 @@ trait JsonResponseTrait
 
     private function exceptionJsonResponse(Exception $e): JsonResponse
     {
-        // $code = $e->getCode() ?? JsonResponse::HTTP_INTERNAL_SERVER_ERROR;
+        $code = $e->getCode() ?? JsonResponse::HTTP_INTERNAL_SERVER_ERROR;
 
         return new JsonResponse(
             [
                 'error' => [
-                    // 'code' => $code,
+                    'code' => $code,
                     'message' => $e->getMessage(),
                 ],
             ],
-            // $code
+            $code
         );
     }
 }

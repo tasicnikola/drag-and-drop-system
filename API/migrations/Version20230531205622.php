@@ -7,12 +7,11 @@ namespace DoctrineMigrations;
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
 
-
 final class Version20230531205622 extends AbstractMigration
 {
     public function getDescription(): string
     {
-        return '';
+        return 'This migration creates Space and Desk entity, with realtions';
     }
 
     public function up(Schema $schema): void

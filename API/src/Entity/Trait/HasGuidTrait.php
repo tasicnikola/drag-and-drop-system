@@ -8,13 +8,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Doctrine\UuidGenerator;
 use Ramsey\Uuid\Rfc4122\UuidInterface;
 
-trait GuidTrait
+trait HasGuidTrait
 {
     #[ORM\Id]
     #[Orm\GeneratedValue(strategy: 'CUSTOM')]
     #[Orm\Column(type: 'uuid', unique: true)]
     #[Orm\CustomIdGenerator(class: UuidGenerator::class)]
-    private UuidInterface|string $guid;
+    private $guid;
 
     public function getGuid(): UuidInterface|string
     {

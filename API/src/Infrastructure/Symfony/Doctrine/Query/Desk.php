@@ -13,11 +13,13 @@ use App\Query\DeskInterface;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\DBAL\Connection;
+use App\Repository\SpaceRepository;
 
 class Desk implements DeskInterface
 {
     public function __construct(
         private readonly Connection $connection,
+        private SpaceRepository $spaceRepository
     ) {
     }
 
@@ -28,23 +30,16 @@ class Desk implements DeskInterface
                 'd.guid as desk_guid',
                 'd.name as desk_name',
                 'd.position as desk_position',
-                // 'd.type as desk_type',
                 'd.created_at as desk_created_at',
                 'd.updated_at as desk_updated_at',
                 's.guid as space_guid',
                 's.name as space_name',
                 's.dimensions as space_dimensions',
-                // 's.team',
                 's.created_at as space_created_at',
                 's.updated_at as space_updated_at',
-                // 't.guid as team_guid',
-                // 't.name as team_name',
-                // 't.created_at as team_created_at',
-                // 't.updated_at as team_updated_at'
             )
             ->from('desks', 'd')
             ->innerJoin('d', 'spaces', 's', 's.guid = d.space')
-            // ->innerJoin('s', 'teams', 't', 's.team = t.guid')
             ->fetchAllAssociative();
 
         return new Desks(array_map(fn (array $deskData) => $this->createDeskDTO($deskData), $desksData));
@@ -58,23 +53,16 @@ class Desk implements DeskInterface
                 'd.guid as desk_guid',
                 'd.name as desk_name',
                 'd.position as desk_position',
-                // 'd.type as desk_type',
                 'd.created_at as desk_created_at',
                 'd.updated_at as desk_updated_at',
                 's.guid as space_guid',
                 's.name as space_name',
                 's.dimensions as space_dimensions',
-                // 's.team',
                 's.created_at as space_created_at',
                 's.updated_at as space_updated_at',
-                // 't.guid as team_guid',
-                // 't.name as team_name',
-                // 't.created_at as team_created_at',
-                // 't.updated_at as team_updated_at'
             )
             ->from('desks', 'd')
             ->innerJoin('d', 'spaces', 's', 's.guid = d.space')
-            // ->innerJoin('s', 'teams', 't', 's.team = t.guid')
             ->where('d.guid = :guid')
             ->setParameter('guid', $guid)
             ->fetchAssociative();
@@ -93,30 +81,22 @@ class Desk implements DeskInterface
                 'd.guid as desk_guid',
                 'd.name as desk_name',
                 'd.position as desk_position',
-                // 'd.type as desk_type',
                 'd.created_at as desk_created_at',
                 'd.updated_at as desk_updated_at',
                 's.guid as space_guid',
                 's.name as space_name',
                 's.dimensions as space_dimensions',
-                // 'r.team',
                 's.created_at as space_created_at',
                 's.updated_at as space_updated_at',
-                // 't.guid as team_guid',
-                // 't.name as team_name',
-                // 't.created_at as team_created_at',
-                // 't.updated_at as team_updated_at'
             )
             ->from('desks', 'd')
             ->innerJoin('d', 'spaces', 's', 's.guid = d.space')
-            // ->innerJoin('r', 'teams', 't', 'r.team = t.guid')
             ->where('d.guid IN (:guids)')
             ->setParameter('guids', $deskGuids, Connection::PARAM_STR_ARRAY)
             ->fetchAllAssociative();
 
         return new Desks(array_map(fn (array $deskData) => $this->createDeskDTO($deskData), $desksData));
     }
-
 
     public function createDeskDTO(array $deskData): DeskDTO
     {
