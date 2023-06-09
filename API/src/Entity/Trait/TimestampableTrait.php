@@ -22,7 +22,7 @@ trait TimestampableTrait
         return $this->createdAt;
     }
 
-    private function setCreatedAt(DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -34,7 +34,7 @@ trait TimestampableTrait
         return $this->updatedAt;
     }
 
-    private function setUpdatedAt(DateTime $updatedAt): self
+    public function setUpdatedAt(DateTime | null $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 

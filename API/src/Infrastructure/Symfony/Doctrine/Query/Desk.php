@@ -8,7 +8,6 @@ use App\DTO\Collection\Desks;
 use App\DTO\Desk as DeskDTO;
 use App\DTO\Dimensions;
 use App\DTO\Position;
-use App\Entity\Space;
 use App\Query\DeskInterface;
 use DateTime;
 use DateTimeImmutable;
@@ -102,7 +101,14 @@ class Desk implements DeskInterface
     {
         $decodedPosition = json_decode($deskData['desk_position'], true);
         $decodedDimensions = json_decode($deskData['space_dimensions'], true);
-
+    
+        $space = $this->spaceRepository->getEntityInstance();
+        $space->setGuid($deskData['space_guid'])
+            ->setName($deskData['space_name'])
+            ->setDimensions(new Dimensions($decodedDimensions['width'], $decodedDimensions['height']))
+            ->setCreatedAt(new DateTimeImmutable($deskData['space_created_at']))
+            ->setUpdatedAt($deskData['space_updated_at'] ? new DateTime($deskData['space_updated_at']) : null);
+    
         return new DeskDTO(
             $deskData['desk_guid'],
             $deskData['desk_name'],
@@ -111,15 +117,10 @@ class Desk implements DeskInterface
                 $decodedPosition['y'],
                 $decodedPosition['angle']
             ),
-            new Space(
-                $deskData['space_guid'],
-                $deskData['space_name'],
-                new Dimensions($decodedDimensions['width'], $decodedDimensions['height']),
-                new DateTimeImmutable($deskData['space_created_at']),
-                $deskData['space_updated_at'] ? new DateTime($deskData['space_updated_at']) : null
-            ),
+            $space,
             new DateTimeImmutable($deskData['desk_created_at']),
             $deskData['desk_updated_at'] ? new DateTime($deskData['desk_updated_at']) : null
         );
     }
+    
 }
