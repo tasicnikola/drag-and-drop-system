@@ -2,7 +2,6 @@
 
 namespace App\DTO;
 
-use App\Entity\Space;
 use DateTime;
 use DateTimeImmutable;
 use JsonSerializable;
