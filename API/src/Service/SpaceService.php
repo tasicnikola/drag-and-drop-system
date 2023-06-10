@@ -15,6 +15,7 @@ use App\Query\SpaceInterface;
 use App\Repository\DeskRepository;
 use App\Repository\SpaceRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Ramsey\Uuid\Lazy\LazyUuidFromString;
 
 class SpaceService
 {
@@ -57,7 +58,13 @@ class SpaceService
         $space->update($params);
         $this->spaceRepository->save($space);
 
-        return $space->getGuid();
+        $guid = $space->getGuid();
+
+        if ($guid instanceof LazyUuidFromString) {
+            $guid = $guid->toString();
+        }
+    
+        return $guid;
     }
 
     public function updateByGuid(string $guid, SpaceParams $params): void

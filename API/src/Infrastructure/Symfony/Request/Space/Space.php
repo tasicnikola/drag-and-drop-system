@@ -61,9 +61,6 @@ class Space extends Request implements SpaceRequestInteface
                         'name' => [
                             new Type(['type' => 'string']),
                         ],
-                        'type' => [
-                            new Type(['type' => 'string']),
-                        ],
                         'position' => [
                             new Collection([
                                 'x' => [
