@@ -1,6 +1,6 @@
 import { HttpMethod } from "../types/HttpMethod";
 
-class DBSService {
+class DNDService {
   public static apiUrl = process.env.REACT_APP_DND_API;
 
   public static sendRequest<T>(
@@ -32,4 +32,4 @@ class DBSService {
   }
 }
 
-export default DBSService;
+export default DNDService;
