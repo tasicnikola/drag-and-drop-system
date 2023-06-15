@@ -1,0 +1,45 @@
+@import "../../styles/pallete";
+@import "../../styles/variables";
+
+.last-child-no-border td:last-child,
+.last-child-no-border th:last-child {
+  border: 0;
+}
+
+.root {
+  padding: map-get($spacing, "4") !important;
+}
+
+.toolbar {
+  border-radius: map-get($spacing, "2");
+  padding: map-get($spacing, "2") !important;
+}
+
+.select {
+  margin: map-get($spacing, "2");
+}
+
+.displayed-rows {
+  margin: map-get($spacing, "2");
+}
+
+.selected-label {
+  margin: map-get($spacing, "2");
+}
+
+.space-name {
+  transition: all 0.2s linear;
+  &:hover {
+    opacity: map-get($opacity, "hover");
+    color: $defaultTextColor;
+  }
+}
+
+.edit-link {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.button {
+  color: $primaryColor !important;
+}

@@ -1,3 +1,6 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "./styles/includes";
+
 .App {
   text-align: center;
 }
@@ -34,5 +37,33 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: map-get($grayscale, "Light-2");
+}
+
+.boxed {
+  box-shadow: map-get($shadows, "md");
+  border-radius: map-get($rounded, "3");
+  background-color: $white;
+  min-width: 650px;
+}
+
+.ghost {
+  border-radius: map-get($map: $rounded, $key: '4') !important;
+  background-color: map-get($map: $grayscale, $key: 'Light') !important;
+  transform: none !important;
+
+  &.spaces {
+    height: 400px !important;
   }
 }

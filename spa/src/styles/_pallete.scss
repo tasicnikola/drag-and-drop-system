@@ -1,0 +1,47 @@
+$primaryColor: #00A767;
+$secondaryColor: #17657A;
+$danger: #FF4343;
+$success: #278557;
+
+$white: #fff;
+$defaultTextColor: #002733;
+$secondaryTextColor: #9CADB3;
+
+$backgroundColor: $white;
+
+$colors: [];
+$grayscale: [];
+$colorscale: [];
+
+$grayscale: map-merge(
+  (
+    'Dark': #002733,
+    'Dark-1': #597680,
+    'Dark-2': #9CADB3,
+    'Light': #F4F7F9,
+    'Light-1': #E5EAEF,
+    'Light-2': #F4F7F9
+  ),
+  $grayscale
+);
+
+$colorscale: map-merge(
+  (
+    'Color-2': #66C6A3,
+    'Color-3': #99DCC2,
+    'Color-4':#CCEDE1,
+    'Color-5': #FFC033
+  ),
+  $colorscale
+);
+
+$colors: map-merge(
+  (
+    'primary': $primaryColor,
+    'secondary': $secondaryColor,
+    'danger': $danger,
+    'success': $success
+  ),
+  $grayscale,
+  $colorscale
+)

@@ -1,0 +1,12 @@
+@import "../../../styles/variables";
+
+.search-bar {
+  border-radius: map-get($rounded, "3");
+  width: 230px;
+}
+
+.end-andorment {
+  top: 0 !important;
+  right: 0 !important;
+  padding: map-get($spacing, "0.5");
+}
